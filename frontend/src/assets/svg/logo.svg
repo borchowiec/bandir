@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="201" viewBox="0 0 180 201">
+    <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(3 153)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="22" cy="22" r="22" stroke="none"/>
+        <circle cx="22" cy="22" r="23.5" fill="none"/>
+    </g>
+    <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(35 124)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(35 95)" fill="#fff" stroke="#fff" stroke-width="3">
+        <ellipse cx="10.5" cy="11" rx="10.5" ry="11" stroke="none"/>
+        <ellipse cx="10.5" cy="11" rx="12" ry="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(35 64)" fill="#fff" stroke="#fff" stroke-width="3">
+        <ellipse cx="10.5" cy="11" rx="10.5" ry="11" stroke="none"/>
+        <ellipse cx="10.5" cy="11" rx="12" ry="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_5" data-name="Ellipse 5" transform="translate(35 33)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_6" data-name="Ellipse 6" transform="translate(35 3)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_7" data-name="Ellipse 7" transform="translate(64 33)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="11" cy="11" r="11" stroke="none"/>
+        <circle cx="11" cy="11" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_8" data-name="Ellipse 8" transform="translate(64 3)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="11" cy="11" r="11" stroke="none"/>
+        <circle cx="11" cy="11" r="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_9" data-name="Ellipse 9" transform="translate(95 33)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_10" data-name="Ellipse 10" transform="translate(95 3)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(126 33)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_12" data-name="Ellipse 12" transform="translate(126 3)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_15" data-name="Ellipse 15" transform="translate(124 153)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="22.5" cy="22.5" r="22.5" stroke="none"/>
+        <circle cx="22.5" cy="22.5" r="24" fill="none"/>
+    </g>
+    <g id="Ellipse_16" data-name="Ellipse 16" transform="translate(156 124)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_17" data-name="Ellipse 17" transform="translate(156 95)" fill="#fff" stroke="#fff" stroke-width="3">
+        <ellipse cx="10.5" cy="11" rx="10.5" ry="11" stroke="none"/>
+        <ellipse cx="10.5" cy="11" rx="12" ry="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_18" data-name="Ellipse 18" transform="translate(156 64)" fill="#fff" stroke="#fff" stroke-width="3">
+        <ellipse cx="10.5" cy="11" rx="10.5" ry="11" stroke="none"/>
+        <ellipse cx="10.5" cy="11" rx="12" ry="12.5" fill="none"/>
+    </g>
+    <g id="Ellipse_19" data-name="Ellipse 19" transform="translate(156 33)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+    <g id="Ellipse_20" data-name="Ellipse 20" transform="translate(156 3)" fill="#fff" stroke="#fff" stroke-width="3">
+        <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+        <circle cx="10.5" cy="10.5" r="12" fill="none"/>
+    </g>
+</svg>
