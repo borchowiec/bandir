@@ -1,17 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1919" height="245" style=""><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1922" height="1093.7899674246346" style=""><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" class="" style=""/>
     <defs>
-        <filter id="Path_1" x="0" y="0" width="1937.2060546875" height="273.614013671875" filterUnits="userSpaceOnUse">
-            <feOffset dy="20" input="SourceAlpha"/>
+        <filter id="Path_2" x="0" y="0" width="1939.5789794921875" height="1100" filterUnits="userSpaceOnUse">
+            <feOffset dy="-6" input="SourceAlpha"/>
             <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feFlood flood-opacity="0.149"/>
+            <feFlood flood-opacity="0.18"/>
             <feComposite operator="in" in2="blur"/>
             <feComposite in="SourceGraphic"/>
         </filter>
     </defs>
 
-    <g class="currentLayer" style=""><title>Layer 1</title>
-        <g filter="url(#Path_1)" id="svg_1" class="">
-            <path id="Path_1-2" data-name="Path 1" d="M1.3234889800848443e-23,154.05169274902346 c1384.545,-71.4 -715.783,-299.55 1919.206,-14.333 v104.895 H1.3234889800848443e-23 z" fill="#fff"/>
-        </g>
-    </g>
-</svg>
+    <g class="currentLayer" style=""><title>Layer 1</title><g filter="url(#Path_2)" id="svg_1" class="">
+        <path id="Path_2-2" data-name="Path 2" d="M1921.579,11.78996753692627 s-320.132,47.684 -516.316,264.105 s-118.6,345.1 -456.316,535.263 C468.553,1081.6579675369262 7.105427357601002e-15,1093.7899675369263 7.105427357601002e-15,1093.7899675369263 H1921.579 z" fill="#722ed1"/>
+    </g></g></svg>

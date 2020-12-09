@@ -36,15 +36,15 @@
 /* =================================== */
 /* Login Form */
 /* =================================== */
-.loginBtn {
-    font-size: 27px;
-    height: 69px;
-    width: 100%;
-    border-radius: 0;
+.loginForm_container {
+    background-color: white;
+    box-shadow: 0 3px 6px #00000063;
+    width: 664px;
+    padding: 35px 97px;
 }
 
-.loginForm_container p {
-    font-size: 16px;
+.loginForm_container h2 {
     color: #707070;
-    textAlign: center;
+    font-size: 44px;
+    text-align: center;
 }

@@ -1,0 +1,7 @@
+#registerSection {
+    background-color: #fff;
+    width: 100%;
+    font-family: "Segoe UI";
+    z-index: 100;
+    position: relative;
+}
