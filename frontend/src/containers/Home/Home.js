@@ -10,15 +10,15 @@ import FormCard from "../../components/FormCard/FormCard";
 const Home = () => (
   <div id="homeSection">
     <Row>
-      <Col span={12} className="leftColumn">
-        <div>
+      <Col sm={24} lg={12} className="leftColumn" style={{width: "100%"}}>
+        <div className="logoContainer">
           <img src={logo} alt="logo" />
           <h1>bandir</h1>
           <p>Improve the quality of your gigs</p>
         </div>
       </Col>
-      <Col span={12} className="rightColumn">
-        <FormCard title="Login">
+      <Col sm={24} lg={12} className="rightColumn">
+        <FormCard title="LOGIN">
           <FormInput placeholder="Username" />
           <FormInput placeholder="Password" />
           <Button type="primary" className="loginBtn">Log in</Button> {/* todo login btn */}
