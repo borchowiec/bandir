@@ -1,0 +1,88 @@
+#homeSection {
+    background-color: #722ED1;
+    width: 100%;
+    font-family: "Segoe UI";
+    color: white;
+}
+
+#homeSection .leftColumn, #homeSection .rightColumn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1080px;
+    text-align: center;
+}
+
+/* =================================== */
+/* Left Column */
+/* =================================== */
+#homeSection .leftColumn .logoContainer {
+    text-align: center;
+}
+
+#homeSection .leftColumn .logoContainer h1 {
+    font-family: "Fjalla One";
+    font-size: 140px;
+    color: white;
+    margin: -13px 0 0 0;
+}
+
+#homeSection .leftColumn .logoContainer p {
+    font-size: 37px;
+    font-style: italic;
+    margin: -30px 0 0 0;
+}
+
+@media only screen and (max-width: 991px) {
+    #homeSection .leftColumn {
+        align-items: flex-start;
+        padding-top: 30px;
+        box-sizing: border-box;
+        height: 350px;
+    }
+
+    #homeSection .leftColumn .logoContainer h1 {
+        font-size: 82px;
+    }
+
+    #homeSection .leftColumn .logoContainer p {
+        font-size: 21px;
+    }
+
+    #homeSection .leftColumn .logoContainer img {
+        width: 100px;
+    }
+
+    #homeSection .rightColumn {
+        align-items: flex-start;
+        padding: 0 3px 0 3px;
+        height: 416px;
+    }
+}
+
+/* =================================== */
+/* Login Form */
+/* =================================== */
+.loginBtn {
+    font-size: 27px;
+    height: 69px;
+    width: 100%;
+    border-radius: 0;
+}
+
+.loginForm_container p {
+    font-size: 16px;
+    color: #707070;
+    textAlign: center;
+}
+
+@media only screen and (max-width: 700px) {
+    .loginBtn {
+        font-size: 14px;
+        height: 37px;
+    }
+
+    .loginForm_container p {
+        font-size: 8px;
+    }
+}

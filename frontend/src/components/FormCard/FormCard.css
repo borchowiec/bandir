@@ -1,0 +1,35 @@
+.loginForm_container {
+    background-color: white;
+    box-shadow: 0 3px 6px #00000063;
+    max-width: 664px;
+    padding: 35px 97px;
+}
+
+.loginForm_container h2 {
+    color: #707070;
+    font-size: 44px;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1300px) {
+    .loginForm_container {
+        padding: 35px 77px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .loginForm_container {
+        padding: 35px 67px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .loginForm_container {
+        padding: 20px 47px;
+    }
+
+    .loginForm_container h2 {
+        font-size: 23px;
+    }
+}
