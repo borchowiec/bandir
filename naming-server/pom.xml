@@ -8,11 +8,11 @@
         <version>2.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.borchowiec</groupId>
-    <artifactId>test</artifactId>
-    <version>0.0.1</version>
-    <name>test</name>
-    <description>Test reactive app</description>
+    <groupId>com.example</groupId>
+    <artifactId>naming-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>naming-server</name>
+    <description>Eureka naming server</description>
 
     <properties>
         <java.version>15</java.version>
@@ -21,22 +21,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

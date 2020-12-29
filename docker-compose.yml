@@ -1,8 +1,16 @@
 version: '3.4'
 services:
+  naming-server:
+    build:
+      context: naming-server
+    ports:
+      - "8761:8761"
+
   test:
     build:
       context: test
+    depends_on:
+      - naming-server
     ports:
       - "8080:8080"
 
@@ -11,6 +19,8 @@ services:
       context: frontend
     volumes:
       - ./frontend:/root
+    depends_on:
+      - naming-server
     ports:
       - "3000:3000"
 
