@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>15</java.version>
-    </properties>ENTRYPOINT ["java","-noverify","-XX:TieredStopAtLevel=1","-cp","app:app/lib/*","-Dspring.main.lazy-initialization=true","com.example.demo.DemoApplication"]
+    </properties>
 
     <dependencies>
         <dependency>
