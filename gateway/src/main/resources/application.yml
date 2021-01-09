@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${NAMING_SERVER_ADDRESS}
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: test
+          uri: lb://TEST
+          predicates:
+            - Path=/test/**
+        - id: baeldung_route
+          uri: http://baeldung.com
+          predicates:
+            - Path=/baeldung/

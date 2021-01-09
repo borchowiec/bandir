@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: naming-server
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://naming-server:8761/eureka

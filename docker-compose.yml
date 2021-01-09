@@ -1,12 +1,56 @@
 version: '3.4'
 services:
+  naming-server:
+    build:
+      dockerfile: ../dockerfiles/JavaAppDockerfile
+      context: naming-server
+    ports:
+      - "8761:8761"
+
+  gateway:
+    build:
+      dockerfile: ../dockerfiles/JavaAppDockerfile
+      context: gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - naming-server
+    environment:
+      NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+    - /data/db
+
+  test:
+    build:
+      dockerfile: ../dockerfiles/JavaAppDockerfile
+      context: test
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mongo
+      - gateway
+    environment:
+      NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+
   frontend:
     build:
       context: frontend
     volumes:
       - ./frontend:/root
+    depends_on:
+      - gateway
     ports:
       - "3000:3000"
+    environment:
+      NAMING_SERVER_ADDRESS: ${GATEWAY_ADDRESS}
 
   nginx:
     build:
