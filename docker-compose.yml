@@ -2,17 +2,28 @@ version: '3.4'
 services:
   naming-server:
     build:
+      dockerfile: ../dockerfiles/JavaAppDockerfile
       context: naming-server
     ports:
       - "8761:8761"
 
-  test:
+  gateway:
     build:
-      context: test
-    depends_on:
-      - naming-server
+      dockerfile: ../dockerfiles/JavaAppDockerfile
+      context: gateway
     ports:
       - "8080:8080"
+    depends_on:
+      - naming-server
+
+  test:
+    build:
+      dockerfile: ../dockerfiles/JavaAppDockerfile
+      context: test
+    ports:
+      - "8081:8080"
+    depends_on:
+      - gateway
 
   frontend:
     build:
@@ -20,7 +31,7 @@ services:
     volumes:
       - ./frontend:/root
     depends_on:
-      - naming-server
+      - gateway
     ports:
       - "3000:3000"
 

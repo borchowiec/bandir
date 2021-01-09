@@ -9,7 +9,7 @@ import java.time.Duration;
 @RestController
 public class TestController {
 
-    @GetMapping
+    @GetMapping("/test")
     public Flux<String> get() {
         Flux<String> flux = Flux.just("first ", "second ", "third" ).delayElements(Duration.ofSeconds(1));
         flux.subscribe();
