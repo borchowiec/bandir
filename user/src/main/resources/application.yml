@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: user
+  data:
+    mongodb:
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${NAMING_SERVER_ADDRESS:http://localhost:8761/eureka}
+
+server:
+  port: 8070
