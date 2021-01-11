@@ -26,9 +26,8 @@ public class UserController {
     }
 
     @PostMapping
-    public void addUser(@Validated @RequestBody CreateUserRequest request) {
-        Mono<User> userMono = userService.saveUser(request);
-        userMono.block(); // todo send event via websockets
+    public Mono<Void> addUser(@Validated @RequestBody CreateUserRequest request) {
+        return userService.saveUser(request).then(); // todo send event via websockets
     }
 
 

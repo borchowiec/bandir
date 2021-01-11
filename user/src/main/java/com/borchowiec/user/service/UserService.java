@@ -13,7 +13,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -31,13 +30,16 @@ public class UserService {
     public Mono<User> saveUser(CreateUserRequest request) {
         Boolean usernameAlreadyTaken = userRepository
                 .existsByUsername(request.getUsername())
+                .toProcessor()
                 .block();
+
         if (usernameAlreadyTaken) {
             throw new AlreadyTakenException(String.format("Username '%s' already taken", request.getUsername()));
         }
 
         Boolean emailAlreadyTaken = userRepository
                 .existsByEmail(request.getEmail())
+                .toProcessor()
                 .block();
         if (emailAlreadyTaken) {
             throw new AlreadyTakenException(String.format("Email '%s' already taken", request.getEmail()));
