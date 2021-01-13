@@ -10,7 +10,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
@@ -20,12 +19,12 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
+    @GetMapping("/user")
     public Flux<User> findAll() {
         return userRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/user")
     public Mono<Void> addUser(@Validated @RequestBody CreateUserRequest request) {
         return userService.saveUser(request).then(); // todo send event via websockets
     }

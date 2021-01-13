@@ -1,6 +1,3 @@
-server:
-  port: 8080
-
 eureka:
   client:
     serviceUrl:
@@ -12,10 +9,10 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: test
-          uri: lb://TEST
+        - id: user
+          uri: lb://USER
           predicates:
-            - Path=/test/**
+            - Path=/user
         - id: baeldung_route
           uri: http://baeldung.com
           predicates:

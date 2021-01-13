@@ -2,6 +2,8 @@ FROM node:10
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN yarn install
+ARG REACT_APP_GATEWAY_ADDRESS
+ENV REACT_APP_GATEWAY_ADDRESS=$REACT_APP_GATEWAY_ADDRESS
 COPY . .
 EXPOSE 3000
 CMD ["yarn", "start"]
