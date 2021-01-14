@@ -25,6 +25,8 @@ public class CorsConfiguration {
   @Bean
   public WebFilter corsFilter() {
     return (ServerWebExchange ctx, WebFilterChain chain) -> {
+      // todo cors config based on env variables
+
       ServerHttpRequest request = ctx.getRequest();
       if (CorsUtils.isCorsRequest(request)) {
         ServerHttpResponse response = ctx.getResponse();

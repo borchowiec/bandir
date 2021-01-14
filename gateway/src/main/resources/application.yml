@@ -17,3 +17,11 @@ spring:
           uri: http://baeldung.com
           predicates:
             - Path=/baeldung/
+
+server:
+  ssl:
+    enabled: true
+    key-alias: gateway-cert
+    key-store-password: password
+    key-store: classpath:keystore.jks
+    key-store-type: JKS
