@@ -9,6 +9,7 @@ import bandWithoutPlate from '../../assets/svg/bandWithoutPlate.svg';
 import FormCard from "../../components/FormCard/FormCard";
 import FormInput from "../../components/FormInput/FormInput";
 import {useInput} from "../../hooks/useInput";
+import Cookies from "universal-cookie";
 
 const formInputStyle = {
   fontSize: "18px",
@@ -31,7 +32,13 @@ const Register = () => {
       email: email
     };
 
-    axios.post(`${GATEWAY_ADDRESS}/user`, body)
+    const headers = {
+      "user-ws-session-id": new Cookies().get("user-ws-session-id")
+    };
+
+    axios.post(`${GATEWAY_ADDRESS}/user`, body, {
+      headers: headers
+    })
       .then(function (response) {
         console.log(response);
       })
