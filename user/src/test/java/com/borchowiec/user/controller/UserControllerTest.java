@@ -35,11 +35,12 @@ class UserControllerTest {
             webClient.post()
                     .uri("/user")
                     .contentType(MediaType.APPLICATION_JSON)
+                    .header("user-ws-session-id", "ws")
                     .body(BodyInserters.fromValue(request))
                     .exchange()
                     .expectStatus().isBadRequest();
 
-            verify(userService, times(0)).saveUser(any(CreateUserRequest.class));
+            verify(userService, times(0)).saveUser(any(CreateUserRequest.class), anyString());
         }
 
         @Test
@@ -120,17 +121,17 @@ class UserControllerTest {
         @Test
         void properData_shouldReturn200() {
             CreateUserRequest request = DummyObjectsUtil.getCreateUserRequest();
-
-            when(userService.saveUser(any(request.getClass()))).thenReturn(Mono.just(new User()));
+            when(userService.saveUser(any(request.getClass()), anyString())).thenReturn(Mono.just(new User()));
 
             webClient.post()
                     .uri("/user")
                     .contentType(MediaType.APPLICATION_JSON)
+                    .header("user-ws-session-id", "ws")
                     .body(BodyInserters.fromValue(request))
                     .exchange()
                     .expectStatus().isOk();
 
-            verify(userService, times(1)).saveUser(any(CreateUserRequest.class));
+            verify(userService, times(1)).saveUser(any(CreateUserRequest.class), anyString());
         }
     }
 }

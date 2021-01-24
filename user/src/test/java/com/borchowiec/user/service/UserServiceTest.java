@@ -12,6 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import reactor.core.publisher.Mono;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -31,6 +33,9 @@ class UserServiceTest {
 
     @Mock
     private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private ApplicationEventPublisher publisher;
 
     @BeforeEach
     public void initMocks(){
@@ -45,11 +50,12 @@ class UserServiceTest {
             CreateUserRequest request = DummyObjectsUtil.getCreateUserRequest();
 
             // when
-            when(userRepository.existsByUsername(anyString())).thenReturn(Mono.just(true));
-            when(userRepository.existsByEmail(anyString())).thenReturn(Mono.just(false));
+            when(userRepository.existsByUsername(anyString())).thenReturn(Mono.just(Boolean.TRUE));
+            when(userRepository.existsByEmail(anyString())).thenReturn(Mono.just(Boolean.FALSE));
+            when(userRepository.save(any(User.class))).thenReturn(Mono.just(new User()));
 
             // then
-            assertThrows(AlreadyTakenException.class, () -> userService.saveUser(request));
+            assertThrows(AlreadyTakenException.class, () -> userService.saveUser(request, "ws").block());
         }
 
         @Test
@@ -60,9 +66,10 @@ class UserServiceTest {
             // when
             when(userRepository.existsByUsername(anyString())).thenReturn(Mono.just(false));
             when(userRepository.existsByEmail(anyString())).thenReturn(Mono.just(true));
+            when(userRepository.save(any(User.class))).thenReturn(Mono.just(new User()));
 
             // then
-            assertThrows(AlreadyTakenException.class, () -> userService.saveUser(request));
+            assertThrows(AlreadyTakenException.class, () -> userService.saveUser(request, "ws").block());
         }
 
         @Test
@@ -81,7 +88,7 @@ class UserServiceTest {
             ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
             when(userRepository.save(userCaptor.capture())).thenReturn(Mono.just(user));
             when(passwordEncoder.encode(anyString())).thenReturn("encoded");
-            User actual = userService.saveUser(request).block();
+            User actual = userService.saveUser(request, "ws").block();
 
             // then
             assertEquals("encoded", userCaptor.getValue().getPassword());
