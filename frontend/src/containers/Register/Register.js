@@ -72,8 +72,8 @@ const Register = () => {
         }}>
           <FormCard title="Create Account">
             <FormInput placeholder="Username" {...bindUsername} style={formInputStyle} />
-            <FormInput placeholder="Password" {...bindPassword} style={formInputStyle} />
-            <FormInput placeholder="Confirm password" {...bindConfirmedPassword} style={formInputStyle} />
+            <FormInput placeholder="Password" type="password" {...bindPassword} style={formInputStyle} />
+            <FormInput placeholder="Confirm password" type="password" {...bindConfirmedPassword} style={formInputStyle} />
             <FormInput placeholder="Email" {...bindEmail} style={formInputStyle} />
             <div className="socialButtonsContainer" style={{textAlign: "left"}}>
               <Button style={{backgroundColor: "#3B5998"}}>Facebook</Button>
