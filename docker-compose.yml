@@ -22,16 +22,13 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
     - /data/db
 
-  test:
+  user:
     build:
       dockerfile: ../dockerfiles/JavaAppDockerfile
-      context: test
+      context: user
     ports:
       - "8081:8080"
     depends_on:
@@ -39,6 +36,8 @@ services:
       - gateway
     environment:
       NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+      MONGO_HOST: ${MONGO_HOST}
+      MONGO_PORT: ${MONGO_PORT}
 
   frontend:
     build:
@@ -47,10 +46,10 @@ services:
       - ./frontend:/root
     depends_on:
       - gateway
+    environment:
+      - REACT_APP_GATEWAY_ADDRESS=${GATEWAY_ADDRESS}
     ports:
       - "3000:3000"
-    environment:
-      NAMING_SERVER_ADDRESS: ${GATEWAY_ADDRESS}
 
   nginx:
     build:
