@@ -4,8 +4,23 @@ import './LandingPage.css';
 import Home from "../../containers/Home/Home";
 import Register from "../../containers/Register/Register";
 import Cookies from "universal-cookie";
+import {notification} from "antd";
 
 const GATEWAY_ADDRESS=process.env.REACT_APP_GATEWAY_ADDRESS;
+
+class SmileOutlined extends React.Component<{ style: { color: string } }> {
+    render() {
+        return null;
+    }
+}
+
+function showNotification(title, message) {
+    notification.open({
+        message: title,
+        description: message,
+        icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+    });
+}
 
 const LandingPage = () => {
     const socket = new WebSocket(`wss://localhost:8080/ws/users`);
@@ -23,6 +38,7 @@ const LandingPage = () => {
                 cookies.set("user-ws-session-id", data.payload)
                 break;
             case "SUCCESS_MESSAGE":
+                showNotification("Success!", data.payload)
                 console.log("message")
                 console.log(data.payload);
                 break;
