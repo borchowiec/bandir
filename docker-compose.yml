@@ -9,7 +9,7 @@ services:
 
   gateway:
     build:
-      dockerfile: ../dockerfiles/JavaAppDockerfile
+      dockerfile: ../dockerfiles/JavaAppWaitingForEurekaDockerfile
       context: gateway
     ports:
       - "8080:8080"
@@ -17,6 +17,7 @@ services:
       - naming-server
     environment:
       NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+      NAMING_SERVER_ADDRESS_WAIT_FOR: ${NAMING_SERVER_ADDRESS_WAIT_FOR}
 
   mongo:
     image: mongo
@@ -27,7 +28,7 @@ services:
 
   user:
     build:
-      dockerfile: ../dockerfiles/JavaAppDockerfile
+      dockerfile: ../dockerfiles/JavaAppWaitingForEurekaDockerfile
       context: user
     ports:
       - "8081:8080"
@@ -36,6 +37,7 @@ services:
       - gateway
     environment:
       NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+      NAMING_SERVER_ADDRESS_WAIT_FOR: ${NAMING_SERVER_ADDRESS_WAIT_FOR}
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
 

@@ -1,0 +1,10 @@
+FROM openjdk:15-alpine
+COPY target/*.jar /app/app.jar
+
+ENV NAMING_SERVER_ADDRESS_WAIT_FOR ${NAMING_SERVER_ADDRESS_WAIT_FOR}
+
+RUN apk add bash
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /opt/
+RUN chmod +x /opt/wait-for-it.sh
+
+ENTRYPOINT /opt/wait-for-it.sh ${NAMING_SERVER_ADDRESS_WAIT_FOR} -- java -jar /app/app.jar
