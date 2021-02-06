@@ -36,14 +36,12 @@ public class UserService {
         return userRepository
                 .existsByUsername(request.getUsername())
                 .doOnSuccess(usernameAlreadyTaken -> {
-                    System.out.println("username " + usernameAlreadyTaken);
                     if (usernameAlreadyTaken) {
                         throw new AlreadyTakenException(String.format("Username '%s' already taken", request.getUsername()));
                     }
                 })
                 .then(userRepository.existsByEmail(request.getEmail()))
                 .doOnSuccess(emailAlreadyTaken -> {
-                    System.out.println("email " + emailAlreadyTaken);
                     if (emailAlreadyTaken) {
                         throw new AlreadyTakenException(String.format("Email '%s' already taken", request.getUsername()));
                     }

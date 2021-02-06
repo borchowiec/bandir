@@ -9,6 +9,12 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: notifications
+          uri: lb://NOTIFICATION-CHANNEL
+          predicates:
+            - Path=/notification-channel/**
+          filters:
+            - RewritePath=/notification-channel/(?<segment>.*), /$\{segment}
         - id: user
           uri: lb://USER
           predicates:
@@ -17,10 +23,6 @@ spring:
           uri: lb://USER
           predicates:
             - Path=/ws/users
-        - id: baeldung_route
-          uri: http://baeldung.com
-          predicates:
-            - Path=/baeldung/
 
 server:
   ssl:

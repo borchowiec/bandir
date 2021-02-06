@@ -26,6 +26,16 @@ services:
     volumes:
     - /data/db
 
+  notification-channel:
+    build:
+      dockerfile: ../dockerfiles/JavaAppWaitingForEurekaDockerfile
+      context: notification-channel
+    depends_on:
+      - gateway
+    environment:
+      NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+      NAMING_SERVER_ADDRESS_WAIT_FOR: ${NAMING_SERVER_ADDRESS_WAIT_FOR}
+
   user:
     build:
       dockerfile: ../dockerfiles/JavaAppWaitingForEurekaDockerfile
@@ -38,6 +48,7 @@ services:
     environment:
       NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
       NAMING_SERVER_ADDRESS_WAIT_FOR: ${NAMING_SERVER_ADDRESS_WAIT_FOR}
+      GATEWAY_ADDRESS: ${GATEWAY_ADDRESS}
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
 
@@ -49,7 +60,8 @@ services:
     depends_on:
       - gateway
     environment:
-      - REACT_APP_GATEWAY_ADDRESS=${GATEWAY_ADDRESS}
+      - REACT_APP_GATEWAY_ADDRESS=${FRONTEND_GATEWAY_ADDRESS}
+      - REACT_APP_WS_GATEWAY_ADDRESS=${FRONTEND_WS_GATEWAY_ADDRESS}
     ports:
       - "3000:3000"
 

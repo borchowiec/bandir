@@ -28,7 +28,6 @@ public class UserController {
     @PostMapping("/user")
     public Mono<Void> addUser(@Validated @RequestBody CreateUserRequest request,
                               @RequestHeader("user-ws-session-id") String wsSession) {
-        System.out.println(wsSession);
         return userService.saveUser(request, wsSession).then(); // todo send event via websockets
     }
 

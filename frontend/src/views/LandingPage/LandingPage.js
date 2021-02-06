@@ -6,7 +6,7 @@ import Register from "../../containers/Register/Register";
 import Cookies from "universal-cookie";
 import {notification} from "antd";
 
-const GATEWAY_ADDRESS=process.env.REACT_APP_GATEWAY_ADDRESS;
+const WS_GATEWAY_ADDRESS=process.env.REACT_APP_WS_GATEWAY_ADDRESS;
 
 class SmileOutlined extends React.Component<{ style: { color: string } }> {
     render() {
@@ -23,7 +23,7 @@ function showNotification(title, message) {
 }
 
 const LandingPage = () => {
-    const socket = new WebSocket(`wss://localhost:8080/ws/users`);
+    const socket = new WebSocket(`${WS_GATEWAY_ADDRESS}/notification-channel/ws/notifications`);
     socket.onerror = ev => console.log("close");
     socket.onopen = ev => console.log("open");
     socket.onclose = ev => console.log("close");
