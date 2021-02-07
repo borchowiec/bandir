@@ -19,3 +19,13 @@ spring:
           uri: lb://USER
           predicates:
             - Path=/user
+        - id: user-repository
+          uri: lb://USER-REPOSITORY
+          predicates:
+            - Path=/user-repository
+        - id: user-repository-rewrite
+          uri: lb://USER-REPOSITORY
+          predicates:
+            - Path=/user-repository/**
+          filters:
+            - RewritePath=/user-repository/(?<segment>.*), /user-repository/$\{segment}

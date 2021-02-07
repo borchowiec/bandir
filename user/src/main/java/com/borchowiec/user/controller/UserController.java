@@ -6,6 +6,7 @@ import com.borchowiec.user.repository.UserRepository;
 import com.borchowiec.user.service.UserService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -13,16 +14,16 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final UserRepository userRepository;
+    private final WebClient webClient;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService, WebClient webClient) {
         this.userService = userService;
-        this.userRepository = userRepository;
+        this.webClient = webClient;
     }
 
     @GetMapping
     public Flux<User> findAll() {
-        return userRepository.findAll();
+        return webClient.get().uri("/user-repository").retrieve().bodyToFlux(User.class);
     }
 
     @PostMapping
@@ -30,6 +31,4 @@ public class UserController {
                               @RequestHeader("user-ws-session-id") String wsSession) {
         return userService.saveUser(request, wsSession).then();
     }
-
-
 }

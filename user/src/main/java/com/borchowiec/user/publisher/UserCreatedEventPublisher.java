@@ -3,7 +3,6 @@ package com.borchowiec.user.publisher;
 import com.borchowiec.user.event.UserCreatedEvent;
 import com.borchowiec.user.model.User;
 import com.borchowiec.user.model.WsMessage;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,8 +11,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 public class UserCreatedEventPublisher implements ApplicationListener<UserCreatedEvent> {
-    @Value("${GATEWAY_ADDRESS}")
-    private String gatewayUrl;
+    private final WebClient webClient;
+
+    public UserCreatedEventPublisher(WebClient webClient) {
+        this.webClient = webClient;
+    }
 
     @Override
     public void onApplicationEvent(UserCreatedEvent event) {
@@ -24,7 +26,7 @@ public class UserCreatedEventPublisher implements ApplicationListener<UserCreate
 
         String url = String.format("/notification-channel/message/%s", event.getWsSession());
 
-        WebClient.create(gatewayUrl)
+        webClient
                 .post()
                 .uri(url)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

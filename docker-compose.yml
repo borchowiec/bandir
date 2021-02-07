@@ -40,8 +40,6 @@ services:
     build:
       dockerfile: ../dockerfiles/JavaAppWaitingForEurekaDockerfile
       context: user
-    ports:
-      - "8081:8080"
     depends_on:
       - mongo
       - gateway
@@ -49,6 +47,19 @@ services:
       NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
       NAMING_SERVER_ADDRESS_WAIT_FOR: ${NAMING_SERVER_ADDRESS_WAIT_FOR}
       GATEWAY_ADDRESS: ${GATEWAY_ADDRESS}
+      MONGO_HOST: ${MONGO_HOST}
+      MONGO_PORT: ${MONGO_PORT}
+
+  user-repository:
+    build:
+      dockerfile: ../dockerfiles/JavaAppWaitingForEurekaDockerfile
+      context: user-repository
+    depends_on:
+      - mongo
+      - gateway
+    environment:
+      NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+      NAMING_SERVER_ADDRESS_WAIT_FOR: ${NAMING_SERVER_ADDRESS_WAIT_FOR}
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
 
