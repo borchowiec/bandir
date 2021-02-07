@@ -19,7 +19,3 @@ spring:
           uri: lb://USER
           predicates:
             - Path=/user
-        - id: user-ws
-          uri: lb://USER
-          predicates:
-            - Path=/ws/users

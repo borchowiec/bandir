@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
@@ -19,12 +20,12 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/user")
+    @GetMapping
     public Flux<User> findAll() {
         return userRepository.findAll();
     }
 
-    @PostMapping("/user")
+    @PostMapping
     public Mono<Void> addUser(@Validated @RequestBody CreateUserRequest request,
                               @RequestHeader("user-ws-session-id") String wsSession) {
         return userService.saveUser(request, wsSession).then();
