@@ -32,13 +32,12 @@ public class UserCreatedEventPublisher implements ApplicationListener<UserCreate
         WsMessage wsMessage = new WsMessage(WsMessage.MessageType.SUCCESS_MESSAGE, message);
 
         String url = String.format("/notification-channel/message/%s", event.getWsSession());
-        System.out.println(url);
 
         WebClient.create(gatewayUrl)
                 .post()
-                .uri(url) // todo use gateway
+                .uri(url)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(Mono.just(wsMessage), WsMessage.class)
+                .bodyValue(wsMessage)
                 .retrieve()
                 .toBodilessEntity()
                 .subscribe();

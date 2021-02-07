@@ -49,7 +49,9 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
     }
 
     public void sendMessage(String id, WsMessage message) {
-        System.out.println(id);
-        sendMessage(sessionMap.get(id), message);
+        WebSocketSession webSocketSession = sessionMap.get(id);
+        if (webSocketSession != null) {
+            sendMessage(webSocketSession, message);
+        }
     }
 }

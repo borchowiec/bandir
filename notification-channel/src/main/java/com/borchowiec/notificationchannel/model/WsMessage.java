@@ -2,9 +2,11 @@ package com.borchowiec.notificationchannel.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @Getter
+@ToString
 public class WsMessage {
     private final MessageType type;
     private final String payload;

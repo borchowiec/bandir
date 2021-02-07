@@ -2,10 +2,7 @@ package com.borchowiec.notificationchannel.controller;
 
 import com.borchowiec.notificationchannel.handler.ReactiveWebSocketHandler;
 import com.borchowiec.notificationchannel.model.WsMessage;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/message")
@@ -17,9 +14,7 @@ public class MessageController {
     }
 
     @PostMapping("/{sessionId}")
-    public void sendMessage(@PathVariable String sessionId, WsMessage message) {
-        System.out.println("wsss");
-        System.out.println(sessionId);
+    public void sendMessage(@PathVariable String sessionId, @RequestBody WsMessage message) {
         webSocketHandler.sendMessage(sessionId, message);
     }
 }
