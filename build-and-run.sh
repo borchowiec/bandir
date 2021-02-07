@@ -2,5 +2,5 @@
 
 BASEDIR=$(dirname "$0")
 BASEDIR=`cd $BASEDIR && pwd`
-BASEDIR/build.sh
+$BASEDIR/build.sh
 docker-compose up --build
