@@ -23,11 +23,3 @@ spring:
           uri: lb://USER
           predicates:
             - Path=/ws/users
-
-server:
-  ssl:
-    enabled: true
-    key-alias: gateway-cert
-    key-store-password: password
-    key-store: classpath:keystore.jks
-    key-store-type: JKS

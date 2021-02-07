@@ -24,9 +24,9 @@ function showNotification(title, message) {
 
 const LandingPage = () => {
     const socket = new WebSocket(`${WS_GATEWAY_ADDRESS}/notification-channel/ws/notifications`);
-    socket.onerror = ev => console.log("close");
-    socket.onopen = ev => console.log("open");
-    socket.onclose = ev => console.log("close");
+    socket.onerror = ev => console.log("close", ev);
+    socket.onopen = ev => console.log("open", ev);
+    socket.onclose = ev => console.log("close", ev);
     socket.onmessage = ev => {
         const data = JSON.parse(ev.data);
         console.log(data);
