@@ -4,7 +4,6 @@ import com.borchowiec.user.model.User;
 import com.borchowiec.user.payload.CreateUserRequest;
 import com.borchowiec.user.repository.UserRepository;
 import com.borchowiec.user.service.UserService;
-import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -28,7 +27,7 @@ public class UserController {
     @PostMapping("/user")
     public Mono<Void> addUser(@Validated @RequestBody CreateUserRequest request,
                               @RequestHeader("user-ws-session-id") String wsSession) {
-        return userService.saveUser(request, wsSession).then(); // todo send event via websockets
+        return userService.saveUser(request, wsSession).then();
     }
 
 

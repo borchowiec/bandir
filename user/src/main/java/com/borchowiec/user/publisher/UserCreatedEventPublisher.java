@@ -1,7 +1,6 @@
 package com.borchowiec.user.publisher;
 
 import com.borchowiec.user.event.UserCreatedEvent;
-import com.borchowiec.user.handler.ReactiveWebSocketHandler;
 import com.borchowiec.user.model.User;
 import com.borchowiec.user.model.WsMessage;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,19 +9,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Component
 public class UserCreatedEventPublisher implements ApplicationListener<UserCreatedEvent> {
-
-    private final ReactiveWebSocketHandler webSocketHandler;
-
     @Value("${GATEWAY_ADDRESS}")
     private String gatewayUrl;
-
-    public UserCreatedEventPublisher(ReactiveWebSocketHandler webSocketHandler) {
-        this.webSocketHandler = webSocketHandler;
-    }
 
     @Override
     public void onApplicationEvent(UserCreatedEvent event) {
