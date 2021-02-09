@@ -5,10 +5,11 @@ import {notification} from "antd";
 
 const WS_GATEWAY_ADDRESS=process.env.REACT_APP_WS_GATEWAY_ADDRESS;
 
-function showNotification(title, message) {
+function showNotification(title, message, style={}) {
   notification.open({
     message: title,
-    description: message
+    description: message,
+    style: style
   });
 }
 
@@ -23,13 +24,13 @@ function onMessage(ev) {
 
   switch (data.type) {
     case "SUCCESS_MESSAGE":
-      showNotification("Success!", data.payload);
+      showNotification("Success!", data.payload, {border: "1px solid #d9f7be"});
       break;
     case "ERROR_MESSAGE":
-      showNotification("Error!", data.payload);
+      showNotification("Error!", data.payload, {border: "1px solid #ffccc7"});
       break;
     case "ALERT_MESSAGE":
-      showNotification("", data.payload);
+      showNotification("", data.payload, {border: "1px solid #bae7ff"});
       break;
     case "SESSION_ID":
       const cookies = new Cookies();
