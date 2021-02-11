@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Cookies from "universal-cookie";
 import {notification} from "antd";
 
@@ -36,6 +34,8 @@ function onMessage(ev) {
       const cookies = new Cookies();
       cookies.set("user-ws-session-id", data.payload)
       break;
+    default:
+      console.log(ev.data);
   }
 }
 
