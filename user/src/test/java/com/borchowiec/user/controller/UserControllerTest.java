@@ -2,7 +2,6 @@ package com.borchowiec.user.controller;
 
 import com.borchowiec.user.model.User;
 import com.borchowiec.user.payload.CreateUserRequest;
-import com.borchowiec.user.repository.UserRepository;
 import com.borchowiec.user.service.UserService;
 import com.borchowiec.user.testuitl.DummyObjectsUtil;
 import org.junit.jupiter.api.Nested;
@@ -25,9 +24,6 @@ class UserControllerTest {
 
     @MockBean
     private UserService userService;
-
-    @MockBean
-    private UserRepository userRepository;
 
     @Nested
     class addUser {

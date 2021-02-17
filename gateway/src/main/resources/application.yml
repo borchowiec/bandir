@@ -9,23 +9,23 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: notifications
+          uri: lb://NOTIFICATION-CHANNEL
+          predicates:
+            - Path=/notification-channel/**
+          filters:
+            - RewritePath=/notification-channel/(?<segment>.*), /$\{segment}
         - id: user
           uri: lb://USER
           predicates:
             - Path=/user
-        - id: user-ws
-          uri: lb://USER
+        - id: user-repository
+          uri: lb://USER-REPOSITORY
           predicates:
-            - Path=/ws/users
-        - id: baeldung_route
-          uri: http://baeldung.com
+            - Path=/user-repository
+        - id: user-repository-rewrite
+          uri: lb://USER-REPOSITORY
           predicates:
-            - Path=/baeldung/
-
-server:
-  ssl:
-    enabled: true
-    key-alias: gateway-cert
-    key-store-password: password
-    key-store: classpath:keystore.jks
-    key-store-type: JKS
+            - Path=/user-repository/**
+          filters:
+            - RewritePath=/user-repository/(?<segment>.*), /user-repository/$\{segment}

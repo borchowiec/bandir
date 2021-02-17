@@ -19,10 +19,10 @@ const formInputStyle = {
 const GATEWAY_ADDRESS=process.env.REACT_APP_GATEWAY_ADDRESS;
 
 const Register = () => {
-  const { value:username, bind:bindUsername, reset:resetUsername } = useInput('');
-  const { value:password, bind:bindPassword, reset:resetPassword } = useInput('');
-  const { value:confirmedPassword, bind:bindConfirmedPassword, reset:resetConfirmedPassword } = useInput('');
-  const { value:email, bind:bindEmail, reset:resetEmail } = useInput('');
+  const { value:username, bind:bindUsername} = useInput('');
+  const { value:password, bind:bindPassword} = useInput('');
+  const { value:confirmedPassword, bind:bindConfirmedPassword} = useInput('');
+  const { value:email, bind:bindEmail} = useInput('');
 
   function signUpWithCredentials() {
     const body = {
@@ -44,6 +44,7 @@ const Register = () => {
       })
       .catch(function (error) {
         console.log(error);
+        console.log(error.data);
       });
   }
 
