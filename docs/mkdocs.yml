@@ -1,0 +1,7 @@
+site_name: Bandir Docs
+
+nav:
+  - Overview: index.md
+  - Build: build.md
+
+theme: material
