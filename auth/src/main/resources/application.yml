@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: auth
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${NAMING_SERVER_ADDRESS:http://localhost:8761/eureka}
