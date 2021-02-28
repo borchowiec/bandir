@@ -18,16 +18,18 @@ const Home = () => {
     const {value: password, bind: bindPassword} = useInput('');
 
     function signIn() {
-      console.log("sign in");
-      console.log(usernameOrEmail);
-      console.log(password);
-
         const body = {
             usernameOrEmail: usernameOrEmail,
             password: password
         };
 
-        axios.post(`${GATEWAY_ADDRESS}/auth/authenticate`, body)
+        const headers = {
+            "user-ws-session-id": new Cookies().get("user-ws-session-id")
+        };
+
+        axios.post(`${GATEWAY_ADDRESS}/auth/authenticate`, body, {
+            headers: headers
+        })
             .then(function (response) {
                 const {type, token} = response.data;
                 console.log(`${type} ${token}`);
