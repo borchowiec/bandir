@@ -63,6 +63,17 @@ services:
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
 
+  auth:
+    build:
+      dockerfile: ../dockerfiles/JavaAppWaitingForEurekaDockerfile
+      context: auth
+    depends_on:
+      - gateway
+    environment:
+      NAMING_SERVER_ADDRESS: ${NAMING_SERVER_ADDRESS}
+      NAMING_SERVER_ADDRESS_WAIT_FOR: ${NAMING_SERVER_ADDRESS_WAIT_FOR}
+      GATEWAY_ADDRESS: ${GATEWAY_ADDRESS}
+
   frontend:
     build:
       context: frontend

@@ -3,7 +3,7 @@ import {notification} from "antd";
 
 const WS_GATEWAY_ADDRESS=process.env.REACT_APP_WS_GATEWAY_ADDRESS;
 
-function showNotification(title, message, style={}) {
+export function showNotification(title, message, style={}) {
   notification.open({
     message: title,
     description: message,

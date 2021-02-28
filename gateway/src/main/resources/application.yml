@@ -15,6 +15,12 @@ spring:
             - Path=/notification-channel/**
           filters:
             - RewritePath=/notification-channel/(?<segment>.*), /$\{segment}
+        - id: auth
+          uri: lb://AUTH
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<segment>.*), /$\{segment}
         - id: user
           uri: lb://USER
           predicates:

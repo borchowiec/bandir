@@ -1,5 +1,6 @@
 package com.borchowiec.user.service;
 
+import com.borchowiec.user.client.AuthClient;
 import com.borchowiec.user.client.NotificationClient;
 import com.borchowiec.user.client.UserRepositoryClient;
 import com.borchowiec.user.event.UserCreatedEvent;
@@ -8,30 +9,29 @@ import com.borchowiec.user.model.User;
 import com.borchowiec.user.model.WsMessage;
 import com.borchowiec.user.payload.CreateUserRequest;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
 public class UserService {
-    private final PasswordEncoder passwordEncoder;
     private final ApplicationEventPublisher publisher;
     private final UserRepositoryClient userRepositoryClient;
     private final NotificationClient notificationClient;
+    private final AuthClient authClient;
 
-    public UserService(PasswordEncoder passwordEncoder, ApplicationEventPublisher publisher,
-                       UserRepositoryClient userRepositoryClient, NotificationClient notificationClient) {
-        this.passwordEncoder = passwordEncoder;
+    public UserService(ApplicationEventPublisher publisher,
+                       UserRepositoryClient userRepositoryClient, NotificationClient notificationClient, AuthClient authClient) {
         this.publisher = publisher;
         this.userRepositoryClient = userRepositoryClient;
         this.notificationClient = notificationClient;
+        this.authClient = authClient;
     }
 
     private User toUser(CreateUserRequest request) {
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPassword(user.getPassword());
 
         return user;
     }
@@ -63,9 +63,14 @@ public class UserService {
     }
 
     public Mono<User> saveUser(CreateUserRequest request, String wsSession) {
+        User user = toUser(request);
         return checkIfUsernameIsAlreadyTaken(request, wsSession)
-                .then(checkIfEmailIsAlreadyTaken(request, wsSession))
-                .then(userRepositoryClient.save(toUser(request))
-                        .doOnSuccess(entity -> publisher.publishEvent(new UserCreatedEvent(entity, wsSession))));
+            .flatMap(b -> checkIfEmailIsAlreadyTaken(request, wsSession))
+            .flatMap(b -> authClient.hashPassword(request.getPassword()))
+            .flatMap(password -> {
+                user.setPassword(password.getPassword());
+                return userRepositoryClient.save(user)
+                        .doOnSuccess(entity -> publisher.publishEvent(new UserCreatedEvent(entity, wsSession)));
+            });
     }
 }
