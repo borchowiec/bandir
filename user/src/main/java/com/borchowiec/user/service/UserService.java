@@ -1,12 +1,12 @@
 package com.borchowiec.user.service;
 
-import com.borchowiec.user.client.AuthClient;
-import com.borchowiec.user.client.NotificationClient;
-import com.borchowiec.user.client.UserRepositoryClient;
+import com.borchowiec.remote.client.AuthClient;
+import com.borchowiec.remote.client.NotificationClient;
+import com.borchowiec.remote.client.UserRepositoryClient;
+import com.borchowiec.remote.model.User;
+import com.borchowiec.remote.model.WsMessage;
 import com.borchowiec.user.event.UserCreatedEvent;
 import com.borchowiec.user.exception.AlreadyTakenException;
-import com.borchowiec.user.model.User;
-import com.borchowiec.user.model.WsMessage;
 import com.borchowiec.user.payload.CreateUserRequest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;

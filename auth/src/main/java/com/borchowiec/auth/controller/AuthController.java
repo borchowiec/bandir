@@ -1,13 +1,13 @@
 package com.borchowiec.auth.controller;
 
-import com.borchowiec.auth.client.NotificationClient;
-import com.borchowiec.auth.client.UserRepositoryClient;
 import com.borchowiec.auth.dto.AuthenticationRequest;
 import com.borchowiec.auth.dto.AuthenticationToken;
-import com.borchowiec.auth.dto.PasswordDto;
 import com.borchowiec.auth.exception.WrongCredentialsException;
-import com.borchowiec.auth.model.WsMessage;
 import com.borchowiec.auth.service.AuthService;
+import com.borchowiec.remote.client.NotificationClient;
+import com.borchowiec.remote.client.UserRepositoryClient;
+import com.borchowiec.remote.model.Password;
+import com.borchowiec.remote.model.WsMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +31,9 @@ public class AuthController {
     }
 
     @PostMapping("/hash-password")
-    public PasswordDto hashPassword(@RequestBody PasswordDto passwordDto) {
+    public Password hashPassword(@RequestBody Password passwordDto) {
         String encoded = passwordEncoder.encode(passwordDto.getPassword());
-        PasswordDto result = new PasswordDto();
+        Password result = new Password();
         result.setPassword(encoded);
         return result;
     }

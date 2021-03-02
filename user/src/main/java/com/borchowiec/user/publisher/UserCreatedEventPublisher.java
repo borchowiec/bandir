@@ -1,9 +1,9 @@
 package com.borchowiec.user.publisher;
 
-import com.borchowiec.user.client.NotificationClient;
+import com.borchowiec.remote.client.NotificationClient;
+import com.borchowiec.remote.model.User;
+import com.borchowiec.remote.model.WsMessage;
 import com.borchowiec.user.event.UserCreatedEvent;
-import com.borchowiec.user.model.User;
-import com.borchowiec.user.model.WsMessage;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 

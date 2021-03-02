@@ -33,6 +33,11 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.7.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.borchowiec</groupId>
+			<artifactId>remote</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

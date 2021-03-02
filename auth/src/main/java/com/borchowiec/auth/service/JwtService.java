@@ -1,7 +1,7 @@
 package com.borchowiec.auth.service;
 
 import com.borchowiec.auth.dto.AuthenticationToken;
-import com.borchowiec.auth.model.User;
+import com.borchowiec.remote.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

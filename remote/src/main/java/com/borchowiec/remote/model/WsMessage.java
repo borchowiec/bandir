@@ -1,4 +1,4 @@
-package com.borchowiec.user.model;
+package com.borchowiec.remote.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,4 +15,3 @@ public class WsMessage {
         SUCCESS_MESSAGE, ERROR_MESSAGE, ALERT_MESSAGE, SESSION_ID
     }
 }
-

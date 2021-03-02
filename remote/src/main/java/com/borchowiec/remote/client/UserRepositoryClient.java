@@ -1,6 +1,6 @@
-package com.borchowiec.user.client;
+package com.borchowiec.remote.client;
 
-import com.borchowiec.user.model.User;
+import com.borchowiec.remote.model.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -13,6 +13,14 @@ public class UserRepositoryClient {
 
     public UserRepositoryClient(WebClient webClient) {
         this.webClient = webClient;
+    }
+
+    public Mono<User> getByUsernameOrEmail(String usernameOrEmail) {
+        return webClient
+                .get()
+                .uri("/user-repository/getByUsernameOrEmail/{usernameOrEmail}", usernameOrEmail)
+                .retrieve()
+                .bodyToMono(User.class);
     }
 
     public Mono<Boolean> existsByUsername(String username) {

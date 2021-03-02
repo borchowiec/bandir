@@ -1,6 +1,6 @@
-package com.borchowiec.auth.client;
+package com.borchowiec.remote.client;
 
-import com.borchowiec.auth.model.WsMessage;
+import com.borchowiec.remote.model.WsMessage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

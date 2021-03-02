@@ -1,6 +1,6 @@
-package com.borchowiec.user.client;
+package com.borchowiec.remote.client;
 
-import com.borchowiec.user.payload.Password;
+import com.borchowiec.remote.model.Password;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
