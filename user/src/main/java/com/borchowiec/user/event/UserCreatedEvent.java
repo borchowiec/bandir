@@ -1,6 +1,6 @@
 package com.borchowiec.user.event;
 
-import com.borchowiec.user.model.User;
+import com.borchowiec.remote.model.User;
 import org.springframework.context.ApplicationEvent;
 
 public class UserCreatedEvent extends ApplicationEvent {

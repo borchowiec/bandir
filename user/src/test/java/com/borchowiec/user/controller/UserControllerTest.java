@@ -1,6 +1,6 @@
 package com.borchowiec.user.controller;
 
-import com.borchowiec.user.model.User;
+import com.borchowiec.remote.model.User;
 import com.borchowiec.user.payload.CreateUserRequest;
 import com.borchowiec.user.service.UserService;
 import com.borchowiec.user.testuitl.DummyObjectsUtil;

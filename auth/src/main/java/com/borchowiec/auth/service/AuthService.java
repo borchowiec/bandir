@@ -2,7 +2,7 @@ package com.borchowiec.auth.service;
 
 import com.borchowiec.auth.dto.AuthenticationToken;
 import com.borchowiec.auth.exception.WrongCredentialsException;
-import com.borchowiec.auth.model.User;
+import com.borchowiec.remote.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

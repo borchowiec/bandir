@@ -1,4 +1,4 @@
-package com.borchowiec.auth.model;
+package com.borchowiec.remote.model;
 
 import lombok.Data;
 
