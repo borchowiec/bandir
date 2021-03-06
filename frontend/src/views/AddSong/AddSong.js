@@ -7,11 +7,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import NavChildren from "../../components/EmptySider/NavChildren/NavChildren";
 import SearchInput from "../../components/SearchInput/NavChildren/SearchInput";
 import ContentCard from "../../components/ContentCard/ContentCard";
+import SongEditor from "../../components/SongEditor/SongEditor";
 
 const { Content } = Layout;
-
 const AddSong = () => {
     // initNotifications();
+
+    const songEditorRef = React.useRef(null);
 
     const inputStyle = {
         background: "#FFFFFF",
@@ -23,6 +25,11 @@ const AddSong = () => {
         color: "#00000040",
         borderRadius: 0,
         width: "100%"
+    }
+
+    function addSong() {
+        const html = songEditorRef.current.toHtml();
+        /*todo send song to backend*/
     }
 
     return (
@@ -58,14 +65,12 @@ const AddSong = () => {
                         </Col>
                         <Col sm={24} style={{backgroundColor: "#FFF", marginTop: "10px"}}>
                             <ContentCard title="Content">
-                                <textarea>
-                                    {/*todo rich editor*/}
-                                </textarea>
+                                <SongEditor ref={songEditorRef} />
                             </ContentCard>
                         </Col>
 
                         <Col sm={24} style={{backgroundColor: "#FFF", marginTop: "10px"}}>
-                            <Button type="primary" block>Add</Button> {/*todo add song*/}
+                            <Button type="primary" block onClick={() => addSong()}>Add</Button>
                         </Col>
                     </Row>
                 </Content>
