@@ -16,8 +16,13 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+    @GetMapping("/getById/{id}")
+    public Mono<User> getUserById(@PathVariable String id) {
+        return userRepository.findById(id);
+    }
+
     @GetMapping("/getByUsernameOrEmail/{usernameOrEmail}")
-    public Mono<User> getUserById(@PathVariable String usernameOrEmail) {
+    public Mono<User> getUserByUsernameOrEmail(@PathVariable String usernameOrEmail) {
         return userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
     }
 

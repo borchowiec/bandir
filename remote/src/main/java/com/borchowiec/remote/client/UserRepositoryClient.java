@@ -15,6 +15,14 @@ public class UserRepositoryClient {
         this.webClient = webClient;
     }
 
+    public Mono<User> getById(String id) {
+        return webClient
+                .get()
+                .uri("/user-repository/getById/{id}", id)
+                .retrieve()
+                .bodyToMono(User.class);
+    }
+
     public Mono<User> getByUsernameOrEmail(String usernameOrEmail) {
         return webClient
                 .get()

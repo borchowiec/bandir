@@ -2,8 +2,7 @@ package com.borchowiec.auth.service;
 
 import com.borchowiec.auth.dto.AuthenticationToken;
 import com.borchowiec.remote.model.User;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,8 @@ import java.util.UUID;
 
 @Service
 public class JwtService {
-    private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final String TOKEN_TYPE = "Bearer";
 
     public AuthenticationToken getAuthenticationToken(User user) {
         Date date = new Date();
@@ -31,6 +31,16 @@ public class JwtService {
                 .signWith(key)
                 .compact();
 
-        return new AuthenticationToken("Bearer", token);
+        return new AuthenticationToken(TOKEN_TYPE, token);
+    }
+
+    public Jws<Claims> getClaims(String token) {
+        if (!token.startsWith(TOKEN_TYPE)) {
+            throw new JwtException("Wrong token type");
+        }
+
+        token = token.substring(TOKEN_TYPE.length() + 1);
+
+        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
     }
 }
