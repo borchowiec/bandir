@@ -33,7 +33,7 @@ const Home = () => {
             .then(function (response) {
                 const {type, token} = response.data;
                 console.log(`${type} ${token}`);
-                new Cookies().set("Authentication", `${type} ${token}`);
+                new Cookies().set("Authorization", `${type} ${token}`);
                 showNotification("Success", "You are logged in!", {border: "1px solid #d9f7be"});
             })
             .catch(function (error) {

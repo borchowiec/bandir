@@ -7,9 +7,11 @@ import com.borchowiec.remote.model.User;
 import com.borchowiec.remote.model.WsMessage;
 import com.borchowiec.user.event.UserCreatedEvent;
 import com.borchowiec.user.exception.AlreadyTakenException;
+import com.borchowiec.user.model.UserInfo;
 import com.borchowiec.user.payload.CreateUserRequest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -72,5 +74,17 @@ public class UserService {
                 return userRepositoryClient.save(user)
                         .doOnSuccess(entity -> publisher.publishEvent(new UserCreatedEvent(entity, wsSession)));
             });
+    }
+
+    public Mono<UserInfo> getPrincipalInfo(String authToken) {
+        return authClient.authorize(authToken, "isAuthenticated()")
+                .flatMap(httpStatus -> {
+                    if (!httpStatus.is2xxSuccessful()) {
+                        return Mono.error(new ResponseStatusException(httpStatus));
+                    }
+
+                    return authClient.getPrincipal(authToken);
+                })
+                .map(UserInfo::new);
     }
 }

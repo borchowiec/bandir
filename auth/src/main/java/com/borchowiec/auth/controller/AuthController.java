@@ -4,36 +4,17 @@ import com.borchowiec.auth.dto.AuthenticationRequest;
 import com.borchowiec.auth.dto.AuthenticationToken;
 import com.borchowiec.auth.exception.WrongCredentialsException;
 import com.borchowiec.auth.model.AuthorizationRequest;
-import com.borchowiec.auth.model.UserDetailsAuthentication;
-import com.borchowiec.auth.model.UserDetailsImpl;
 import com.borchowiec.auth.service.AuthService;
 import com.borchowiec.remote.client.NotificationClient;
 import com.borchowiec.remote.client.UserRepositoryClient;
 import com.borchowiec.remote.model.Password;
 import com.borchowiec.remote.model.User;
 import com.borchowiec.remote.model.WsMessage;
-import org.springframework.expression.EvaluationContext;
-import org.springframework.expression.Expression;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.expression.ExpressionUtils;
-import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
-import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.util.SimpleMethodInvocation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.ContextLoader;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-
-import java.lang.reflect.Method;
-import java.util.UUID;
 
 @RestController
 public class AuthController {
@@ -80,5 +61,11 @@ public class AuthController {
                         ? ResponseEntity.ok().build()
                         : ResponseEntity.status(HttpStatus.FORBIDDEN).build()
                 );
+    }
+
+    @GetMapping("/principal")
+    public Mono<User> authorize(@RequestHeader("Authorization") String authToken) {
+        System.out.println(authToken);
+        return authService.getPrincipal(authToken);
     }
 }

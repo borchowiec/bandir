@@ -11,7 +11,7 @@ import SongEditor from "../../components/SongEditor/SongEditor";
 
 const { Content } = Layout;
 const AddSong = () => {
-    // initNotifications();
+    initNotifications();
 
     const songEditorRef = React.useRef(null);
 
